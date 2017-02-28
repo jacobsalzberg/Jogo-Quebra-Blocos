@@ -24,10 +24,11 @@ public class MusicPlayer : MonoBehaviour {
     //void Start () {
         //Debug.Log("Music player Start" + GetInstanceID());
     
-            }
+            //}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
 }
