@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(string name)
     {
-        Debug.Log("Level load requested for: " + name);
+        Debug.Log("Level load load: " + name);
         SceneManager.LoadScene(name);
     }
     public void QuitRequest()
