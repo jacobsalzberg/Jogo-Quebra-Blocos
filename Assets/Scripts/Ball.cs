@@ -8,14 +8,18 @@ public class Ball : MonoBehaviour {
     private Vector3 paddleToBallVector;
     private Rigidbody2D ballRigidBody2D;
     private bool hasStarted = false;
+    //VERSAO QUE EU FIZ DO SOM DA BOLA public static AudioSource bounceBall;
+    private AudioSource bounceBall;
 
     // Use this for initialization
     void Start () {
         paddle = GameObject.FindObjectOfType<Paddle>(); //nao precisa usar o editor!!!
         paddleToBallVector = this.transform.position - paddle.transform.position;
         ballRigidBody2D = GetComponent<Rigidbody2D>();
-		
-	}
+        //VERSAO QUE EU FIZ DO SOM DA BOLA bounceBall = GetComponent<AudioSource>();
+
+
+    }
 
     // Update is called once per frame
     void Update() {
@@ -33,5 +37,18 @@ public class Ball : MonoBehaviour {
             }
         }
         }
-	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Vector2 tweak = new Vector2 (Random.Range(0f,155f), Random.Range(0f,155f));
+        print(tweak);
+        
+        if (hasStarted)
+        {
+            bounceBall = GetComponent<AudioSource>();
+            bounceBall.Play();
+            this.ballRigidBody2D.velocity += tweak;
+        }
+    }
+}
 

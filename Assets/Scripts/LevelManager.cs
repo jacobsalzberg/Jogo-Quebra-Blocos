@@ -11,10 +11,22 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Level load load: " + name);
         SceneManager.LoadScene(name);
     }
+    public void LoadNextLevel()
+    {
+        Debug.Log("load next level: " + name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1); //level index
+    }
     public void QuitRequest()
     {
         Debug.Log("Quit request");
         Application.Quit();
 
     }
-   }
+    public void BrickDestroyed()
+    {
+        if (Brick.breakableCount <=0) //last brick destroyed, including double decrements
+        {
+            LoadNextLevel();
+        }
+    }
+}
