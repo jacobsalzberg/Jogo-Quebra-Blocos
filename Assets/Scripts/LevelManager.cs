@@ -9,10 +9,12 @@ public class LevelManager : MonoBehaviour
     public void LoadLevel(string name)
     {
         Debug.Log("Level load load: " + name);
+        Brick.breakableCount = 0;
         SceneManager.LoadScene(name);
     }
     public void LoadNextLevel()
     {
+        Brick.breakableCount = 0;
         Debug.Log("load next level: " + name);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1); //level index
     }
