@@ -38,16 +38,18 @@ public class Ball : MonoBehaviour {
         }
         }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        Vector2 tweak = new Vector2 (Random.Range(0f,155f), Random.Range(0f,155f));
-        print(tweak);
-        
+        Vector2 tweak = new Vector2 (Random.Range(5f,155f), Random.Range(5f,155f));
+        //print(tweak);
+
         if (hasStarted)
         {
             bounceBall = GetComponent<AudioSource>();
             bounceBall.Play();
-            this.ballRigidBody2D.velocity += tweak;
+           
+                this.ballRigidBody2D.velocity += tweak;
+           
         }
     }
 }
