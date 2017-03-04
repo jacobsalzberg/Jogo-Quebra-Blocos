@@ -40,7 +40,7 @@ public class Ball : MonoBehaviour {
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Vector2 tweak = new Vector2 (Random.Range(5f,155f), Random.Range(5f,155f));
+        Vector2 tweak = new Vector2 (Random.Range(55f,75f), Random.Range(5f,15f));
         //print(tweak);
 
         if (hasStarted)
@@ -48,7 +48,16 @@ public class Ball : MonoBehaviour {
             bounceBall = GetComponent<AudioSource>();
             bounceBall.Play();
            
+                if (this.ballRigidBody2D.velocity.y > 0)
+            {
                 this.ballRigidBody2D.velocity += tweak;
+            } else
+            {
+                this.ballRigidBody2D.velocity -= tweak;
+            }
+
+
+                
            
         }
     }

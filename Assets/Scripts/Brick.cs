@@ -10,7 +10,8 @@ public class Brick : MonoBehaviour
 
     private LevelManager levelManager;
     private int timesHit; //propriedades darticulares
-    private bool isBreakable; 
+    private bool isBreakable;
+    public GameObject smoke;
 
     // Use this for initialization
     void Start()
@@ -54,7 +55,9 @@ public class Brick : MonoBehaviour
         {
             breakableCount--;
             levelManager.BrickDestroyed();
-          //  print(breakableCount);
+            PuffSmoke();
+
+            //  print(breakableCount);
             Destroy(gameObject);
         }
         else
@@ -76,5 +79,16 @@ public class Brick : MonoBehaviour
         {
         this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
         }
+        else
+        {
+            Debug.LogError("Brick Sprite Missing");
+        }
+    }
+
+    void PuffSmoke()
+    {
+        smoke = Instantiate(smoke, gameObject.transform.position, Quaternion.identity);
+        ParticleSystem.MainModule main = smoke.GetComponent<ParticleSystem>().main;
+        main.startColor = gameObject.GetComponent<SpriteRenderer>().color;
     }
 }
